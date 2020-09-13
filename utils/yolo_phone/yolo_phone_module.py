@@ -5,6 +5,7 @@ import cv2
 
 def phone_detection(input_frame, net, layer_names, input_labels, input_confidence= 0.5, input_threshold= 0.3):
 	(H, W) = (None, None)
+	result = False
 
 	frame = input_frame
 
@@ -40,8 +41,9 @@ def phone_detection(input_frame, net, layer_names, input_labels, input_confidenc
 			(x, y) = (boxes[i_count][0], boxes[i_count][1])
 			(w, h) = (boxes[i_count][2], boxes[i_count][3])
 			if (input_labels[classIDs[i_count]] == "cell phone"):
+				result = True
 				text = "PHONE"
 				cv2.putText(frame, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2)
 				cv2.rectangle(frame, (x, y), (x + w, y + h), (0,0,255), 1)
 
-	return frame
+	return frame, result

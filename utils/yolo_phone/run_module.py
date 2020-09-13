@@ -28,8 +28,11 @@ while True:
 	if not grabbed:
 		break
 
-	frame = ypm.phone_detection(frame, net, layer_names, labels)
+	frame, result = ypm.phone_detection(frame, net, layer_names, labels)
 
+	if result:
+		print('Phone detected')
+		
 	cv2.imshow("Demo", frame)
 	
 	if cv2.waitKey(1) & 0xFF == ord('q'):
