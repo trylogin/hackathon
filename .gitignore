@@ -39,3 +39,5 @@ utils/handtracking/protos/BUILD
 utils/handtracking/protos/
 *.weights
 *.names
+*.avi
+*.jpg
